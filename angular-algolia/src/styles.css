@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap/dist/css/bootstrap-reboot.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+.left.carousel-control,
+.right.carousel-control {
+    background-image: none;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.carousel-control-prev
+,.carousel-control-next {
+    width: 32px;
+}
+
+.carousel-control-prev {
+    margin-left: -32px;
+}
+
+.carousel-control-next {
+    margin-right: -32px;
+}
+
+.carousel-control-prev-icon {
+    filter: brightness(0);
+}
+
+.carousel-control-next-icon {
+    filter: brightness(0);
+}

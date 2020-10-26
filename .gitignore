@@ -102,3 +102,4 @@ dist
 
 # TernJS port file
 .tern-port
+angular-algolia/src/environments/environment.ts

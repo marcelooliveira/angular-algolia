@@ -12,47 +12,40 @@ const pageSize = 4;
 export class AppComponent {
   title: 'angular-algolia';
   categories: any[];
-
-  products: any;
-  productNumber: number;
-  productName: string;
-  productCategory: string;
-  productPrice: number;
+  serverProducts: any[];
 
   constructor(private productService: ProductService) {
-    this.categories = this.groupBy(data, 'category');
   }
 
   ngOnInit() {
-    this.productService.read_Products().subscribe(data => {
-      this.products = data.map(e => {
+    this.productService.read_Products().subscribe(serverProduct => {
+      this.serverProducts = serverProduct.map(e => {
         return {
           id: e.payload.doc.id,
-          Number: e.payload.doc.data()['Number'],
-          Name: e.payload.doc.data()['Name'],
-          Category: e.payload.doc.data()['Category'],
-          Price: e.payload.doc.data()['Price'],
+          number: e.payload.doc.data()['number'],
+          name: e.payload.doc.data()['name'],
+          category: e.payload.doc.data()['category'],
+          price: e.payload.doc.data()['price'],
         };
-      })
-      console.log(this.products);
+      });
+      
+      if (this.serverProducts.length == 0) {
+        data.forEach(p => {
+          this.CreateRecord(p);
+        });
+      }
+
+      this.categories = this.groupBy(this.serverProducts, 'category');
+      console.log(JSON.stringify(this.categories));
     });
-
-    console.log(40);
-    data.forEach(product => {
-    console.log(42);
-
-      this.CreateRecord(product)
-    });
-    console.log(46);
-
   }
 
   CreateRecord(item: any) {
     let record = {};
-    record['Number'] = item.Number;
-    record['Name'] = item.Name;
-    record['Category'] = item.Category;
-    record['Price'] = item.Price;
+    record['number'] = item.number;
+    record['name'] = item.name;
+    record['category'] = item.category;
+    record['price'] = item.price;
     this.productService.create_NewProduct(record).then(resp => {
       console.log('item.Name added successfully.');
     })

@@ -13,12 +13,16 @@ export class AppComponent {
   title: 'angular-algolia';
   categories: any[];
   serverProducts: any[];
+  uploadingData: boolean = false;
 
   constructor(private productService: ProductService) {
   }
-
+  
   ngOnInit() {
     this.productService.read_Products().subscribe(serverProduct => {
+      if (this.uploadingData)
+        return;
+
       this.serverProducts = serverProduct.map(e => {
         return {
           id: e.payload.doc.id,
@@ -30,11 +34,12 @@ export class AppComponent {
       });
       
       if (this.serverProducts.length == 0) {
+        this.uploadingData = true;
         data.forEach(p => {
           this.CreateRecord(p);
         });
       }
-
+  
       this.categories = this.groupBy(this.serverProducts, 'category');
       console.log(JSON.stringify(this.categories));
     });

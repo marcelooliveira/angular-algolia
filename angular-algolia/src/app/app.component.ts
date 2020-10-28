@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { data } from '../data/data';
 import { ProductService } from './../product.service';
+import algoliasearchType from 'algoliasearch';
+import { environment } from 'src/environments/environment';
 
 const pageSize = 4;
 
@@ -18,13 +20,14 @@ export class AppComponent {
   constructor(private productService: ProductService) {
   }
   
-  ngOnInit() {
+  async ngOnInit() {
     this.productService.read_Products().subscribe(serverProduct => {
       if (this.uploadingData)
         return;
 
       this.serverProducts = serverProduct.map(e => {
         return {
+          objectID: e.payload.doc.id,
           id: e.payload.doc.id,
           number: e.payload.doc.data()['number'],
           name: e.payload.doc.data()['name'],
@@ -42,6 +45,18 @@ export class AppComponent {
   
       this.categories = this.groupBy(this.serverProducts, 'category');
       console.log(JSON.stringify(this.categories));
+
+      const SearchClient = algoliasearchType(environment.Algolia_Application_ID, environment.Algolia_Admin_API_Key);
+      const index = SearchClient.initIndex("Products");
+
+      index
+      .saveObjects(this.serverProducts)
+      .then(({ objectIDs }) => {
+        console.log(objectIDs);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     });
   }
 

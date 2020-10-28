@@ -59,27 +59,6 @@ export class AppComponent {
     });
   }
 
-  // RemoveRecord(rowID) {
-  //   this.productService.delete_Product(rowID);
-  // }
-
-  // EditRecord(record) {
-  //   record.isEdit = true;
-  //   record.EditName = record.Name;
-  //   record.EditCalories = record.Calories;
-  //   record.EditDescription = record.Description;
-  // }
-
-  // UpdateRecord(recordRow) {
-  //   let record = {};
-  //   record['Number'] = recordRow.EditName;
-  //   record['Name'] = recordRow.EditName;
-  //   record['Category'] = recordRow.EditCalories;
-  //   record['Price'] = recordRow.EditDescription;
-  //   this.productService.update_Product(recordRow.id, record);
-  //   recordRow.isEdit = false;
-  // }
-
   groupBy = function (objArr: any[], propName: string): any[] {
     return objArr.reduce((acc, obj) => {
       const key = obj[propName];

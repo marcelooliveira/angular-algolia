@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { data } from '../data/data';
 import { ProductService } from './../product.service';
-import algoliasearchType from 'algoliasearch';
 import { environment } from 'src/environments/environment';
 import * as io from 'socket.io-client';
 import VoiceWidget from "../../public/voice-widget/voice-widget.js";
-// import * as stream from 'stream';
+import algoliasearch from 'algoliasearch';
+declare var instantsearch: any;
+
 
 @Component({
   selector: 'app-root',
@@ -47,7 +48,7 @@ export class AppComponent {
       this.categories = this.groupBy(this.serverProducts, 'category');
       console.log(JSON.stringify(this.categories));
 
-      const SearchClient = algoliasearchType(environment.Algolia_Application_ID, environment.Algolia_Admin_API_Key);
+      const SearchClient = algoliasearch(environment.Algolia_Application_ID, environment.Algolia_Admin_API_Key);
       const index = SearchClient.initIndex("Products");
 
       index

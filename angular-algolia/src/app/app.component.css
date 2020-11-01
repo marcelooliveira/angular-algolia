@@ -15,15 +15,6 @@ body {
   margin-top: 1em;
 }
 
-.left-panel {
-  float: left;
-  width: 250px;
-}
-
-.right-panel {
-  margin-left: 260px;
-}
-
 .ais-InstantSearch {
   max-width: 960px;
   overflow: hidden;

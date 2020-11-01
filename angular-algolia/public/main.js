@@ -39,7 +39,7 @@ search.addWidget(
 search.addWidget(
   new VoiceWidget({
     container: "#voice-search",
-    placeholder: "Search for products and categories",
+    placeholder: "Search for dogs and breeds",
     socket: socket,
     processor: "gcp"
   })

@@ -1,5 +1,5 @@
 import VoiceWidget from "./voice-widget/voice-widget.js";
-
+require('stream');
 var socket = io.connect("https://voice-search-demo.herokuapp.com/");
 
 socket.on("connect", function() {});
@@ -26,7 +26,7 @@ search.addWidget(
                 <div class="centered"><img src="{{image}}" alt=""></div>
                 <div class="centered"><div class="add-to-cart"><i class="fas fa-cart-plus"></i> Add <span class="hide-mobile hide-tablet">to Cart</span></div></div>
                 <div class="item-content">
-                    <p class="brand">{{{_highlightResult.brand.value}}}</p>
+                    <p class="category">{{{_highlightResult.category.value}}}</p>
                     <p class="name">{{{_highlightResult.name.value}}}</p>
                 </div>
             </div>
@@ -39,7 +39,7 @@ search.addWidget(
 search.addWidget(
   new VoiceWidget({
     container: "#voice-search",
-    placeholder: "Search for products and brands",
+    placeholder: "Search for products and categories",
     socket: socket,
     processor: "gcp"
   })
@@ -59,12 +59,12 @@ search.addWidget(
 
 search.addWidget(
   instantsearch.widgets.refinementList({
-    container: "#brand",
-    attribute: "brand",
+    container: "#category",
+    attribute: "category",
     limit: 5,
     showMore: true,
     searchable: true,
-    searchablePlaceholder: "Search our brands"
+    searchablePlaceholder: "Search our categories"
   })
 );
 

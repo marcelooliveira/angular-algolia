@@ -3,6 +3,9 @@ import { data } from '../data/data';
 import { ProductService } from './../product.service';
 import algoliasearchType from 'algoliasearch';
 import { environment } from 'src/environments/environment';
+import * as io from 'socket.io-client';
+import VoiceWidget from "../../public/voice-widget/voice-widget.js";
+require('stream');
 
 const pageSize = 4;
 
@@ -58,6 +61,81 @@ export class AppComponent {
         console.log(err);
       });
     });
+
+    var socket = io.connect("http://....:port/");
+// var socket = io.connect("https://voice-search-demo.herokuapp.com/");
+
+    const search = instantsearch({
+      indexName: 'Products',
+      searchClient: algoliasearch('TDH1HFPX5P', 'c3227e6d3ffe36e1d3cdeefa6e290f0f'),
+    });
+    
+    // search.addWidgets([
+    //   instantsearch.widgets.searchBox({
+    //     container: '#searchbox',
+    //   }),
+    //   instantsearch.widgets.clearRefinements({
+    //     container: '#clear-refinements',
+    //   }),
+    //   instantsearch.widgets.refinementList({
+    //     container: '#category-list',
+    //     attribute: 'category',
+    //   }),
+    //   instantsearch.widgets.hits({
+    //     container: '#hits',
+    //     templates: {
+    //       item: `
+    //       <div class="card">
+    //         <img src="" class="card-img-top" alt="...">
+    //         <div class="card-body">
+    //           <h5 class="card-title">{{category}}</h5>
+    //           <p class="card-text">{{name}}</p>
+    //         </div>
+    //       </div>
+    //       `,
+    //     },
+    //   }),
+    //   instantsearch.widgets.pagination({
+    //     container: '#pagination',
+    //   }),
+    // ]);
+
+
+
+
+    search.addWidgets([
+      instantsearch.widgets.hits({ 
+        container: '#hits',
+        templates: {
+        item: `
+        <div class="card">
+          <img src="" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{category}}</h5>
+            <p class="card-text">{{name}}</p>
+          </div>
+        </div>
+        `,
+      },
+      }),
+      new VoiceWidget({
+        container: "#voice-search",
+        placeholder: "Search for ....",
+        socket: socket,
+        processor: "gcp" // gcp || 
+      })      
+    ]);
+
+    // search.addWidget(
+    //   new VoiceWidget({
+    //     container: "#voice-search",
+    //     placeholder: "Search for ....",
+    //     socket: socket,
+    //     processor: "gcp" // gcp || 
+    //   })
+    // );
+    
+    search.start();
   }
 
   CreateRecord(item: any) {

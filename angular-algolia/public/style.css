@@ -130,7 +130,7 @@ nav ul {
   cursor: pointer;
 }
 
-.item .item-content .brand {
+.item .item-content .category {
   color: gray;
   font-size: 13px;
   margin-bottom: -7px;

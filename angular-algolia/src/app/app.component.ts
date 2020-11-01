@@ -5,9 +5,7 @@ import algoliasearchType from 'algoliasearch';
 import { environment } from 'src/environments/environment';
 import * as io from 'socket.io-client';
 import VoiceWidget from "../../public/voice-widget/voice-widget.js";
-require('stream');
-
-const pageSize = 4;
+// import * as stream from 'stream';
 
 @Component({
   selector: 'app-root',
@@ -164,11 +162,4 @@ export class AppComponent {
     }, {});
   };
 
-  pageIndexes = function (items: number[]): number[] {
-    return [...Array(Math.floor(Math.ceil(items.length / pageSize))).keys()];
-  }
-
-  pageItems = function (items: number[], pageIndex: number): number[] {
-    return items.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
-  }
 }

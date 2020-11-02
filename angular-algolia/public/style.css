@@ -154,7 +154,7 @@ nav ul {
 }
 
 #algolia-search-input {
-  width: 320px;
+  width: calc(100% - 32px);
   border-radius: 50px;
   border: 1px solid white;
   background-color: #5468ff;
@@ -228,7 +228,7 @@ nav ul {
   }
 
   #algolia-search-input {
-    width: 190px;
+    width: calc(100% - 32px);
     height: 33px;
     padding-left: 10px !important;
   }

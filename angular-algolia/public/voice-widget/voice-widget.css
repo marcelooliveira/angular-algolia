@@ -15,8 +15,8 @@
     padding: 0 10px;
     border-radius: 5px;
     font-size: 14px;
-    width: 400px;
-    height: 45px;
+    width: calc(100% - 32px);
+    height: 64px;
     border: 1px solid gray;
     outline: none;
 }

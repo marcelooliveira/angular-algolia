@@ -59,3 +59,16 @@ body {
 #voice-search button {
   display: inline;
 }
+
+.img-dog {
+  height: 240px;
+  object-fit:contain;
+  background-color: black;
+}
+
+mark {
+  font-weight: bold;
+  font-style: unset;
+  background-color: rgba(216, 216, 216, 0.75);
+  padding: 0.2;
+}

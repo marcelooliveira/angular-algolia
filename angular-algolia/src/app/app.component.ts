@@ -72,9 +72,9 @@ export class AppComponent {
         <div class="card">
           <img src="{{pic}}" class="card-img-top img-dog" alt="...">
           <div class="card-body">
-            <h2 class="card-title">{{name}}</h2>
-            <h5 class="card-text">{{breed}}</h5>
-            <p class="card-text">{{description}}</p>
+            <h2 class="card-title">{{{_highlightResult.name.value}}}</h2>
+            <h5 class="card-text">{{{_highlightResult.breed.value}}}</h5>
+            <p class="card-text">{{{_highlightResult.description.value}}}</p>
           </div>
         </div>
         `,

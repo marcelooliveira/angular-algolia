@@ -229,7 +229,7 @@ nav ul {
 
   #algolia-search-input {
     width: calc(100% - 32px);
-    height: 33px;
+    height: 64px;
     padding-left: 10px !important;
   }
 

@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDOrsXLUDEYMh6teL5Rc3wEcbjzMJZY23E",
+    authDomain: "angular-algolia.firebaseapp.com",
+    databaseURL: "https://angular-algolia.firebaseio.com",
+    projectId: "angular-algolia",
+    storageBucket: "angular-algolia.appspot.com",
+    messagingSenderId: "340560174518",
+    appId: "1:340560174518:web:b88fe2342da07ff4517517"
+  }
 };
 
 /*

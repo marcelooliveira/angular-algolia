@@ -1,0 +1,37 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+h1 {
+    color: white;
+    background-color: orange;
+}
+
+.img-dog {
+    height: 180px;
+    object-fit: cover;
+    background-color: black;
+}
+
+.description {
+    height: 6em; 
+    overflow: hidden;
+    position: relative; 
+}
+
+
+@media (min-width: 0px) { 
+    .card {
+        min-width: 300px;
+    }
+}
+
+@media (min-width: 576px) { 
+    .card {
+        min-width: 200px;
+    }
+}
+
+@media (min-width: 768px) { 
+    .card {
+        min-width: 100px;
+    }
+}

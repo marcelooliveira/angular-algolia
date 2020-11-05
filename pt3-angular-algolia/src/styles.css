@@ -1,1 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap/dist/css/bootstrap-reboot.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+.ais-Hits-item {
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+#voice-search div,
+#voice-search button {
+  display: inline;
+}
+
+h2 {
+    color: white;
+    background-color: orange;
+}
+
+.img-dog {
+    height: 180px;
+    object-fit: cover;
+    background-color: black;
+}
+
+.description {
+    height: 6em; 
+    overflow: hidden;
+    position: relative; 
+}
+
+.ais-Pagination {
+  margin-top: 1em;
+}
+
+#algolia-search-input {
+    width: calc(100% - 3.4em);
+    height: 3em;
+    font-size: 1.2em;
+}
+
+#algolia-mic {
+    width: 1.8em;
+    height: 1.8em;
+    font-size: 2em;
+    vertical-align: bottom;
+}
+
+@media (min-width: 0px) { 
+    .ais-Hits-item {
+        min-width: 433px;
+    }
+}
+
+@media (min-width: 576px) { 
+    .ais-Hits-item {
+        min-width: 200px;
+    }
+}
+
+@media (min-width: 768px) { 
+    .ais-Hits-item {
+        min-width: 100px;
+    }
+}
+

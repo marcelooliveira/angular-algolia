@@ -1,10 +1,5 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
-h1 {
-    color: white;
-    background-color: orange;
-}
-
 .img-dog {
     height: 180px;
     object-fit: cover;
@@ -16,7 +11,6 @@ h1 {
     overflow: hidden;
     position: relative; 
 }
-
 
 @media (min-width: 0px) { 
     .card {
@@ -34,4 +28,8 @@ h1 {
     .card {
         min-width: 100px;
     }
+}
+
+#voice-search {
+    margin: 8px 0 8px 0;
 }

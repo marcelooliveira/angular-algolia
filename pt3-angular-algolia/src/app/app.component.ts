@@ -4,6 +4,8 @@ import { DogService } from './../dog.service';
 import algoliasearch from 'algoliasearch';
 import { environment } from 'src/environments/environment';
 declare var instantsearch: any;
+import * as io from 'socket.io-client';
+import VoiceWidget from "../../public/voice-widget/voice-widget.js";
 
 @Component({
   selector: 'app-root',
@@ -69,5 +71,47 @@ export class AppComponent {
         console.log(err);
       });
     });
+
+    var socket = io.connect('');
+
+    const search = instantsearch({
+      indexName: 'Dogs',
+      searchClient: algoliasearch(environment.Algolia_Application_ID, environment.Algolia_Admin_API_Key),
+    });
+    
+    search.addWidgets([
+      instantsearch.widgets.hits({ 
+        container: '#hits',
+        templates: {
+        item: `
+        <div class="card shadow">
+          <img src="{{pic}}" class="card-img-top img-dog">
+          <div class="card-body">
+            <h5 class="card-title">{{{_highlightResult.name.value}}}<i class="far fa-heart text-danger float-right"></i></h5>
+            <h6 class="card-text">{{{_highlightResult.breed.value}}}</h6>
+            <div class="card-text description">{{{_highlightResult.description.value}}}</div>
+          </div>
+        </div>
+        `,
+      },
+      }),
+      new VoiceWidget({
+        container: "#voice-search",
+        placeholder: "Search for name, breed or description...",
+        socket: socket,
+        processor: "gcp" // gcp || 
+      }),
+      instantsearch.widgets.pagination({
+        container: '#pagination'        
+      })      
+    ]);
+
+    search.addWidget(
+      instantsearch.widgets.configure({
+        hitsPerPage: 8
+      })
+    );
+    
+    search.start(); 
   }
 }
